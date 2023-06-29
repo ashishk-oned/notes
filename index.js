@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 
+
 let notes = [
   { id: 1, content: "HTML is easy", important: true },
   { id: 2, content: "Browser can execute only JavaScript", important: false },
@@ -20,9 +21,11 @@ let notes = [
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(express.static('dist'));
 
 app.get('/', (request, response) => {
-    response.send('<h1>Hello World!</h1>')
+    // response.send('<h1>Hello World!</h1>')
+    response.sendFile('index.html')
   })
 // api endpoint
 app.get('/api/notes', (request, response) => {
